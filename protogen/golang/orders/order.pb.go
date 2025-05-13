@@ -10,6 +10,7 @@ package orders
 
 import (
 	product "github.com/nguyenhoang711/example-go-grpc-gateway/protogen/golang/product"
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	date "google.golang.org/genproto/googleapis/type/date"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
@@ -25,50 +26,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type PayloadWithSingleOrder struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Order         *Order                 `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PayloadWithSingleOrder) Reset() {
-	*x = PayloadWithSingleOrder{}
-	mi := &file_orders_order_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PayloadWithSingleOrder) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PayloadWithSingleOrder) ProtoMessage() {}
-
-func (x *PayloadWithSingleOrder) ProtoReflect() protoreflect.Message {
-	mi := &file_orders_order_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PayloadWithSingleOrder.ProtoReflect.Descriptor instead.
-func (*PayloadWithSingleOrder) Descriptor() ([]byte, []int) {
-	return file_orders_order_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *PayloadWithSingleOrder) GetOrder() *Order {
-	if x != nil {
-		return x.Order
-	}
-	return nil
-}
-
 type Order struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	OrderId       uint64                 `protobuf:"varint,1,opt,name=order_id,proto3" json:"order_id,omitempty"`
@@ -82,7 +39,7 @@ type Order struct {
 
 func (x *Order) Reset() {
 	*x = Order{}
-	mi := &file_orders_order_proto_msgTypes[1]
+	mi := &file_orders_order_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -94,7 +51,7 @@ func (x *Order) String() string {
 func (*Order) ProtoMessage() {}
 
 func (x *Order) ProtoReflect() protoreflect.Message {
-	mi := &file_orders_order_proto_msgTypes[1]
+	mi := &file_orders_order_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -107,7 +64,7 @@ func (x *Order) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Order.ProtoReflect.Descriptor instead.
 func (*Order) Descriptor() ([]byte, []int) {
-	return file_orders_order_proto_rawDescGZIP(), []int{1}
+	return file_orders_order_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Order) GetOrderId() uint64 {
@@ -155,7 +112,7 @@ type Empty struct {
 
 func (x *Empty) Reset() {
 	*x = Empty{}
-	mi := &file_orders_order_proto_msgTypes[2]
+	mi := &file_orders_order_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -167,7 +124,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_orders_order_proto_msgTypes[2]
+	mi := &file_orders_order_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -180,16 +137,58 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
+	return file_orders_order_proto_rawDescGZIP(), []int{1}
+}
+
+type PayloadWithSingleOrder struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Order         *Order                 `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PayloadWithSingleOrder) Reset() {
+	*x = PayloadWithSingleOrder{}
+	mi := &file_orders_order_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PayloadWithSingleOrder) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PayloadWithSingleOrder) ProtoMessage() {}
+
+func (x *PayloadWithSingleOrder) ProtoReflect() protoreflect.Message {
+	mi := &file_orders_order_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PayloadWithSingleOrder.ProtoReflect.Descriptor instead.
+func (*PayloadWithSingleOrder) Descriptor() ([]byte, []int) {
 	return file_orders_order_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *PayloadWithSingleOrder) GetOrder() *Order {
+	if x != nil {
+		return x.Order
+	}
+	return nil
 }
 
 var File_orders_order_proto protoreflect.FileDescriptor
 
 const file_orders_order_proto_rawDesc = "" +
 	"\n" +
-	"\x12orders/order.proto\x1a\x15product/product.proto\x1a\x15google/api/date.proto\"6\n" +
-	"\x16PayloadWithSingleOrder\x12\x1c\n" +
-	"\x05order\x18\x01 \x01(\v2\x06.OrderR\x05order\"\xbc\x01\n" +
+	"\x12orders/order.proto\x1a\x15product/product.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/date.proto\"\xbc\x01\n" +
 	"\x05Order\x12\x1a\n" +
 	"\border_id\x18\x01 \x01(\x04R\border_id\x12 \n" +
 	"\vcustomer_id\x18\x02 \x01(\x04R\vcustomer_id\x12\x1c\n" +
@@ -198,9 +197,12 @@ const file_orders_order_proto_rawDesc = "" +
 	"\n" +
 	"order_date\x18\x05 \x01(\v2\x11.google.type.DateR\n" +
 	"order_date\"\a\n" +
-	"\x05Empty27\n" +
-	"\x06Orders\x12-\n" +
-	"\bAddOrder\x12\x17.PayloadWithSingleOrder\x1a\x06.Empty\"\x00BJZHgithub.com/nguyenhoang711/example-go-grpc-gateway/protogen/golang/ordersb\x06proto3"
+	"\x05Empty\"6\n" +
+	"\x16PayloadWithSingleOrder\x12\x1c\n" +
+	"\x05order\x18\x01 \x01(\v2\x06.OrderR\x05order2L\n" +
+	"\x06Orders\x12B\n" +
+	"\bAddOrder\x12\x17.PayloadWithSingleOrder\x1a\x06.Empty\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
+	"/v0/ordersBJZHgithub.com/nguyenhoang711/example-go-grpc-gateway/protogen/golang/ordersb\x06proto3"
 
 var (
 	file_orders_order_proto_rawDescOnce sync.Once
@@ -216,18 +218,18 @@ func file_orders_order_proto_rawDescGZIP() []byte {
 
 var file_orders_order_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_orders_order_proto_goTypes = []any{
-	(*PayloadWithSingleOrder)(nil), // 0: PayloadWithSingleOrder
-	(*Order)(nil),                  // 1: Order
-	(*Empty)(nil),                  // 2: Empty
+	(*Order)(nil),                  // 0: Order
+	(*Empty)(nil),                  // 1: Empty
+	(*PayloadWithSingleOrder)(nil), // 2: PayloadWithSingleOrder
 	(*product.Product)(nil),        // 3: Product
 	(*date.Date)(nil),              // 4: google.type.Date
 }
 var file_orders_order_proto_depIdxs = []int32{
-	1, // 0: PayloadWithSingleOrder.order:type_name -> Order
-	3, // 1: Order.products:type_name -> Product
-	4, // 2: Order.order_date:type_name -> google.type.Date
-	0, // 3: Orders.AddOrder:input_type -> PayloadWithSingleOrder
-	2, // 4: Orders.AddOrder:output_type -> Empty
+	3, // 0: Order.products:type_name -> Product
+	4, // 1: Order.order_date:type_name -> google.type.Date
+	0, // 2: PayloadWithSingleOrder.order:type_name -> Order
+	2, // 3: Orders.AddOrder:input_type -> PayloadWithSingleOrder
+	1, // 4: Orders.AddOrder:output_type -> Empty
 	4, // [4:5] is the sub-list for method output_type
 	3, // [3:4] is the sub-list for method input_type
 	3, // [3:3] is the sub-list for extension type_name

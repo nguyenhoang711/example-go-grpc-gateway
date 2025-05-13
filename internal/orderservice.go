@@ -2,6 +2,7 @@ package internal
 
 import (
 	"context"
+	"fmt"
 	"log"
 
 	"github.com/nguyenhoang711/example-go-grpc-gateway/protogen/golang/orders"
@@ -24,4 +25,34 @@ func (o *OrderService) AddOrder(_ context.Context, req *orders.PayloadWithSingle
 	err := o.db.AddOrder(req.GetOrder())
 
 	return &orders.Empty{}, err
+}
+
+// GetOrder implements the GetOrder method of the grpc OrdersServer interface to fetch an order for a given orderID
+func (o *OrderService) GetOrder(_ context.Context, req *orders.PayloadWithOrderID) (*orders.PayloadWithSingleOrder, error) {
+	log.Printf("Received get order request")
+
+	order := o.db.GetOrderByID(req.GetOrderId())
+	if order == nil {
+		return nil, fmt.Errorf("order not found for orderID: %d", req.GetOrderId())
+	}
+
+	return &orders.PayloadWithSingleOrder{Order: order}, nil
+}
+
+// UpdateOrder implements the UpdateOrder method of the grpc OrdersServer interface to update an order
+func (o *OrderService) UpdateOrder(_ context.Context, req *orders.PayloadWithSingleOrder) (*orders.Empty, error) {
+	log.Printf("Received an update order request")
+
+	o.db.UpdateOrder(req.GetOrder())
+
+	return &orders.Empty{}, nil
+}
+
+// RemoveOrder implements the RemoveOrder method of the grpc OrdersServer interface to remove an order
+func (o *OrderService) RemoveOrder(_ context.Context, req *orders.PayloadWithOrderID) (*orders.Empty, error) {
+	log.Printf("Received a remove order request")
+
+	o.db.RemoveOrder(req.GetOrderId())
+
+	return &orders.Empty{}, nil
 }
